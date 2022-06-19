@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Poppins:wght@300;600&display=swap');
+
+*{
+    font-family: 'Indie Flower', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    margin: 0;
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 100px 1fr 100px;
+}
+
+#head{
+    
+    font-size: 50px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #64748b;
+}
+
+#footer{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #64748b;
+}
+
+:root{
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size)*0.9);
+}
+
+#main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#main>*{
+    margin: 20px 0px;
+}
+
+#message{
+    font-size: 50px;
+}
+
+#resetButton{
+    font-size: 30px;
+    font-weight: bold;
+    padding: 10px 50px;
+    background-color: #475569;
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+#resetButton:hover{
+    background-color: #1e293b;
+}
+
+#gameBoard{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+}
+
+.field{
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: solid 2px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.field.x, 
+.field.o {
+    cursor: not-allowed;
+}
+
+.field:first-child,
+.field:nth-child(2),
+.field:nth-child(3) {
+    border-top: none;
+}
+
+.field:nth-child(3n + 1){
+    border-left: none;
+}
+
+.field:nth-child(3n + 3){
+    border-right: none;
+}
+
+.field:last-child,
+.field:nth-child(7),
+.field:nth-child(8) {
+    border-bottom: none;
+}
+
+.field.x::before,
+.field.x::after,
+.field.o::before {
+    background-color: black;
+}
+
+.gameBoard.x .field:not(.x):not(.o):hover::before,
+.gameBoard.x .field:not(.x):not(.o):hover::after,
+.gameBoard.o .field:not(.x):not(.o):hover::before{
+    background-color: lightgrey;
+}
+
+.field.x::before,
+.field.x::after,
+.gameBoard.x .field:not(.x):not(.o):hover::before,
+.gameBoard.x .field:not(.x):not(.o):hover::after{
+    content: '';
+    position: absolute;
+    width: calc(var(--mark-size)*0.15);
+    height: var(--mark-size);
+
+}
+
+.field.x::before,
+.gameBoard.x .field:not(.x):not(.o):hover::before{
+    transform: rotate(45deg);
+}
+
+.field.x::after,
+.gameBoard.x .field:not(.x):not(.o):hover::after{
+    transform: rotate(-45deg);
+}
+
+.field.o::before,
+.field.o::after,
+.gameBoard.o .field:not(.x):not(.o):hover::before,
+.gameBoard.o .field:not(.x):not(.o):hover::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+.field.o::before,
+.gameBoard.o .field:not(.x):not(.o):hover::before{
+    width: var(--mark-size);
+    height: var(--mark-size);
+}
+
+.field.o::after,
+.gameBoard.o .field:not(.x):not(.o):hover::after{
+    width: calc(var(--mark-size)*0.7);
+    height: calc(var(--mark-size)*0.7);
+    background-color: white;
+}
+
